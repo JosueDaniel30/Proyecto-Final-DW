@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: galacticos_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: galacticos_rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+volumes:
+  mongodb_data:
